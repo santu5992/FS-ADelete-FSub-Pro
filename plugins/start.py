@@ -88,7 +88,7 @@ async def start_command(client: Client, message: Message):
             except:
                 pass
 
-        await message.reply_text("<b>❗️ <u>WARNING!</u> ❗️</b>\n\n<b>This video / file will be deleted in 30 minutes (Due to copyright issues).\n\n📌 Please forward this video / file to somewhere else and start downloading there.</b>")
+        await message.reply_text("<b>❗️❗️❗️<u>WARNING!</u>❗️❗️❗️</b>\n\n<b>This video / file will be deleted in 30 minutes (Due to copyright issues).\n\n📌 Please forward this video / file to somewhere else and start downloading there.</b>")
         await asyncio.sleep(SECONDS)
 
         for data in CodeXBotz:
