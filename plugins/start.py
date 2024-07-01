@@ -64,6 +64,7 @@ async def start_command(client: Client, message: Message):
             return
         await temp_msg.delete()
         
+        CodeXBotz = []
         for msg in messages:
 
             if bool(CUSTOM_CAPTION) & bool(msg.video):
@@ -77,20 +78,22 @@ async def start_command(client: Client, message: Message):
                 reply_markup = None
 
             try:
-                f = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
+                snt_msg = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
                 await asyncio.sleep(1)
+                CodeXBotz.append(snt_msg)
             except FloodWait as e:
                 await asyncio.sleep(e.x)
-                f = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)            
-            
+                snt_msg = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
+                CodeXBotz.append(snt_msg)
             except:
                 pass
-        k = await message.reply_text("<b>❗️❗️❗ <u>WARNING!</u> ❗️❗️❗️</b>\n\n<b>This video / file will be deleted in 10 minutes (Due to copyright issues).\n\n📌 Please forward this video / file to somewhere else and start downloading there.</b>")
-        await asyncio.sleep(SECONDS)
-        await f.delete()       
-        await k.edit_text("<b>Your video / file is successfully deleted !</b>")
-  
-                
+
+        h = await message.reply_text("<b>❗️❗️❗ <u>WARNING!</u> ❗️❗️❗️</b>\n\n<b>This video / file will be deleted in 10 minutes (Due to copyright issues).\n\n📌 Please forward this video / file to somewhere else and start downloading there.</b>")
+        await asyncio.sleep(SECONDS)        
+        await CodeXBotz.delete()       
+        await h.edit_text("<b>Your video / file is successfully deleted !</b>")
+
+        
         return
     else:
         reply_markup = InlineKeyboardMarkup(
