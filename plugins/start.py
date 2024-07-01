@@ -94,8 +94,7 @@ async def start_command(client: Client, message: Message):
         for data in CodeXBotz:            
                 await CodeXBotz.delete()       
                 await h.edit_text("<b>Your video / file is successfully deleted !</b>")
-
-        
+       
         return
     else:
         reply_markup = InlineKeyboardMarkup(
