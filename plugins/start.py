@@ -64,7 +64,6 @@ async def start_command(client: Client, message: Message):
             return
         await temp_msg.delete()
         
-        CodeXBotz = []
         for msg in messages:
 
             if bool(CUSTOM_CAPTION) & bool(msg.video):
@@ -79,12 +78,10 @@ async def start_command(client: Client, message: Message):
 
             try:
                 snt_msg = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
-                await asyncio.sleep(0.5)
-                CodeXBotz.append(snt_msg)
+                await asyncio.sleep(1)
             except FloodWait as e:
                 await asyncio.sleep(e.x)
-                snt_msg = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
-                CodeXBotz.append(snt_msg)
+                snt_msg = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)            
             except:
                 pass
 
