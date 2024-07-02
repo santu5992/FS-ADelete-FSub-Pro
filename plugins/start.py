@@ -64,7 +64,7 @@ async def start_command(client: Client, message: Message):
             return
         await temp_msg.delete()
         
-        snt_msg = []
+        snt_msgs = []
         for msg in messages:
 
             if bool(CUSTOM_CAPTION) & bool(msg.video):
@@ -80,21 +80,21 @@ async def start_command(client: Client, message: Message):
             try:
                 snt_msg = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
                 await asyncio.sleep(0.5)
-                snt_msg.append(snt_msg)
+                snt_msgs.append(snt_msg)
             except FloodWait as e:
                 await asyncio.sleep(e.x)
                 snt_msg = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
-                snt_msg.append(snt_msg)
+                snt_msgs.append(snt_msg)
             except:
                 pass
 
-        sd = await message.reply_text("<b>❗️❗️❗ <u>WARNING!</u> ❗️❗️❗️</b>\n\n<b>This video / file will be deleted in 10 minutes (Due to copyright issues).\n\n📌 Please forward this video / file to somewhere else and start downloading there.</b>")
+        SD = await message.reply_text("<b>❗️❗️❗ <u>WARNING!</u> ❗️❗️❗️</b>\n\n<b>This video / file will be deleted in 10 minutes (Due to copyright issues).\n\n📌 Please forward this video / file to somewhere else and start downloading there.</b>")
         await asyncio.sleep(SECONDS)
 
-        for data in snt_msg:
+        for snt_msg in snt_msgs:
             try:
-                await data.delete()       
-                await sd.delete()
+                await snt_msg.delete()       
+                await SD.delete()
             except:
                 pass
        
