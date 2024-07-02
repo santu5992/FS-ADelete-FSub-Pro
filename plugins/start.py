@@ -17,7 +17,7 @@ from database.database import add_user, del_user, full_userbase, present_user
 
 """add time im seconds for waitingwaiting before delete 
 1min=60, 2min=60×2=120, 5min=60×5=300"""
-SECONDS = int(os.getenv("SECONDS", "600"))
+# SECONDS = int(os.getenv("SECONDS", "600"))
 
 @Bot.on_message(filters.command('start') & filters.private & subscribed)
 async def start_command(client: Client, message: Message):
@@ -88,13 +88,13 @@ async def start_command(client: Client, message: Message):
             except:
                 pass
 
-        SD = await message.reply_text("<b>❗️❗️❗ <u>WARNING!</u> ❗️❗️❗️</b>\n\n<b>This video / file will be deleted in 10 minutes (Due to copyright issues).\n\n📌 Please forward this video / file to somewhere else and start downloading there.</b>")
-        await asyncio.sleep(SECONDS)
+        h = await message.reply_text("<b>❗️❗️❗ <u>WARNING!</u> ❗️❗️❗️</b>\n\n<b>This video / file will be deleted in 10 minutes (Due to copyright issues).\n\n📌 Please forward this video / file to somewhere else and start downloading there.</b>")
+        await asyncio.sleep(600)
 
         for data in CodeXBotz:
             try:
                 await data.delete()       
-                await SD.delete()
+                await h.delete()
             except:
                 pass
        
