@@ -93,8 +93,8 @@ async def start_command(client: Client, message: Message):
 
         for data in CodeXBotz:
             try:
-                await data.delete()       
-                await h.delete()
+                await data.delete(0.5)       
+                await h.delete(1)
             except:
                 pass
        
